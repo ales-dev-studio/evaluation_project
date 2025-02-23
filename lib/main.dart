@@ -1,9 +1,12 @@
+import 'package:evaluation_project/core/locators/home_locators.dart';
 import 'package:evaluation_project/core/theme/colors.dart';
 import 'package:evaluation_project/core/theme/typography.dart';
 import 'package:evaluation_project/features/home_feature/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  setupHomeLocators();
   runApp(const MyApp());
 }
 

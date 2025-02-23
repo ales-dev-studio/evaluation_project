@@ -1,8 +1,10 @@
 import 'package:evaluation_project/core/gen/assets.gen.dart';
+import 'package:evaluation_project/core/locators/locator.dart';
 import 'package:evaluation_project/core/theme/colors.dart';
 import 'package:evaluation_project/core/widgets/app_svg_viewer.dart';
 import 'package:evaluation_project/core/widgets/dot_icon.dart';
 import 'package:evaluation_project/features/home_feature/presentation/bloc/bottom_navigation_cubit.dart';
+import 'package:evaluation_project/features/home_feature/presentation/bloc/home_bloc.dart';
 import 'package:evaluation_project/features/home_feature/presentation/widgets/favorites_tab.dart';
 import 'package:evaluation_project/features/home_feature/presentation/widgets/home_tab.dart';
 import 'package:evaluation_project/features/home_feature/presentation/widgets/map_tap.dart';
@@ -15,8 +17,18 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<BottomNavigationCubit>(
-      create: (context) => BottomNavigationCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<BottomNavigationCubit>(
+          create: (context) => BottomNavigationCubit(),
+        ),
+        BlocProvider<HomeBloc>(
+          create: (context) => HomeBloc(
+            locator(),
+            locator(),
+          ),
+        ),
+      ],
       child: const _HomeScreen(),
     );
   }
