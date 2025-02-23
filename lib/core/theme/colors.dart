@@ -18,4 +18,10 @@ class AppColors {
 
   // Pure white color used for backgrounds or text.
   static const whiteColor = Color(0xffffffff);
+
+  // Pure black color used for texts
+  static const blackColor = Color(0xff000000);
+
+  // Light text color used for light texts
+  static const lightTextColor = Color(0xffC7CDD9);
 }
