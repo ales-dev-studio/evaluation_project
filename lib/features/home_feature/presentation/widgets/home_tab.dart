@@ -1,4 +1,5 @@
 import 'package:evaluation_project/core/theme/colors.dart';
+import 'package:evaluation_project/features/home_feature/presentation/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeTab extends StatelessWidget {
@@ -6,10 +7,15 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: AppColors.primaryColor,
-      body: const Center(
-        child: Text('Home tab'),
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            HeaderWidget(),
+          ],
+        ),
       ),
     );
   }

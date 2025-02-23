@@ -10,8 +10,8 @@ class AppTypography {
     return TextTheme(
       // Display Large: Used for the largest headlines
       displayLarge: GoogleFonts.dmSans(
-        fontSize: 57, // Font size for displayLarge
-        fontWeight: FontWeight.w400, // Regular weight
+        fontSize: 50, // Font size for displayLarge
+        fontWeight: FontWeight.w700, // Regular weight
       ),
       // Display Medium: Slightly smaller than displayLarge
       displayMedium: GoogleFonts.dmSans(
