@@ -6,9 +6,9 @@ class BannerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size.width;
+    final size = MediaQuery.of(context).size;
     return SizedBox(
-      width: size,
+      width: size.width,
       child: Image.asset(
         Assets.images.banner.path,
         fit: BoxFit.fitWidth,

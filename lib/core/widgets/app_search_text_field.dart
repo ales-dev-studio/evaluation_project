@@ -27,7 +27,7 @@ class AppSearchTextField extends StatelessWidget {
         maxLength: 30,
         hinText: 'Search in Barbers, Location and services ...',
         hintStyle: const TextStyle(
-          color: AppColors.lightTextColor,
+          color: AppColors.veryLightTextColor,
           fontSize: 14.0,
         ),
         suffixIcon: Container(

@@ -23,5 +23,8 @@ class AppColors {
   static const blackColor = Color(0xff000000);
 
   // Light text color used for light texts
-  static const lightTextColor = Color(0xffC7CDD9);
+  static const lightTextColor = Color(0xff808A9E);
+
+  // Very light text color used for very light texts
+  static const veryLightTextColor = Color(0xffB4BBCA);
 }

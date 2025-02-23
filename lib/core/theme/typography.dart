@@ -46,7 +46,7 @@ class AppTypography {
       // Title Medium: Used for medium-sized titles
       titleMedium: GoogleFonts.dmSans(
         fontSize: 16, // Font size for titleMedium
-        fontWeight: FontWeight.w500, // Medium weight
+        fontWeight: FontWeight.w700, // Medium weight
       ),
       // Title Small: Used for small titles
       titleSmall: GoogleFonts.dmSans(

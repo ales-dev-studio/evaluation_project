@@ -72,7 +72,7 @@ class CategoryItemWidget extends StatelessWidget {
         Text(
           title,
           style: AppTypography.dmSansTextTheme.bodySmall?.copyWith(
-            color: AppColors.lightTextColor,
+            color: AppColors.veryLightTextColor,
             height: 0.0,
           ),
         ),

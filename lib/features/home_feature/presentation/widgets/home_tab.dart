@@ -3,6 +3,7 @@ import 'package:evaluation_project/core/theme/dimens.dart';
 import 'package:evaluation_project/core/widgets/app_search_text_field.dart';
 import 'package:evaluation_project/core/widgets/app_space.dart';
 import 'package:evaluation_project/features/home_feature/presentation/widgets/banner_widget.dart';
+import 'package:evaluation_project/features/home_feature/presentation/widgets/barbers_widget.dart';
 import 'package:evaluation_project/features/home_feature/presentation/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class HomeTab extends StatelessWidget {
           padding: EdgeInsets.only(
             left: Dimens.largePadding,
             right: Dimens.largePadding,
-            bottom: 80.0,
+            bottom: 40.0,
           ),
           physics: BouncingScrollPhysics(),
           child: Column(
@@ -39,6 +40,10 @@ class HomeTab extends StatelessWidget {
                 space: 32.0,
               ),
               BannerWidget(),
+              AppVSpace(
+                space: 32.0,
+              ),
+              BarbersWidget(),
             ],
           ),
         ),
