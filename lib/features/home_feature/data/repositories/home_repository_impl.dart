@@ -32,7 +32,7 @@ class HomeRepositoryImpl extends HomeRepository {
   @override
   Future<DataState<ServicesModel>> getServicesList() async {
     try {
-      final Response response = await apiProvider.getBarbers();
+      final Response response = await apiProvider.getServices();
 
       if (response.statusCode == 200) {
         final ServicesModel servicesModel = ServicesModel.fromJson(

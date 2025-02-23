@@ -22,8 +22,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     GetHomeDataEvent event,
     Emitter<HomeState> emit,
   ) async {
+    emit(
+      state.copyWith(
+        status: Status.initial,
+      ),
+    );
+
     final DataState servicesDataState = await servicesUseCase(NoParams());
     final DataState barbersDataState = await barbersUseCase(NoParams());
+
+    print(servicesDataState);
+    print(barbersDataState);
 
     if (servicesDataState is DataFailed) {
       emit(

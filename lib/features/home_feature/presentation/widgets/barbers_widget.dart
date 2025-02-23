@@ -2,6 +2,7 @@ import 'package:evaluation_project/core/gen/assets.gen.dart';
 import 'package:evaluation_project/core/theme/colors.dart';
 import 'package:evaluation_project/core/theme/dimens.dart';
 import 'package:evaluation_project/core/theme/typography.dart';
+import 'package:evaluation_project/core/widgets/app_error_handler.dart';
 import 'package:evaluation_project/core/widgets/app_space.dart';
 import 'package:evaluation_project/core/widgets/rate_widget.dart';
 import 'package:evaluation_project/features/home_feature/presentation/bloc/home_bloc.dart';
@@ -20,8 +21,12 @@ class BarbersWidget extends StatefulWidget {
 class _BarbersWidgetState extends State<BarbersWidget> {
   @override
   void initState() {
-    context.read<HomeBloc>().add(GetHomeDataEvent());
+    init();
     super.initState();
+  }
+
+  void init() {
+    context.read<HomeBloc>().add(GetHomeDataEvent());
   }
 
   @override
@@ -45,20 +50,55 @@ class _BarbersWidgetState extends State<BarbersWidget> {
               ],
             ),
             const AppVSpace(),
-            Skeletonizer(
-              enabled: state.status == Status.initial,
-              child: ListView.separated(
-                itemCount: 10,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (final context, final index) {
-                  return const BarberItemWidget();
-                },
-                separatorBuilder: (final context, final index) {
-                  return const AppVSpace();
-                },
-              ),
-            )
+            if (state.status == Status.failure)
+              AppErrorHandler(
+                onReloadButtonTap: init,
+              )
+            else
+              Skeletonizer(
+                enabled: state.status == Status.initial,
+                child: Column(
+                  children: [
+                    if (state.status == Status.success) ...[
+                      SizedBox(
+                        height: 40.0,
+                        child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: state.servicesList!.results!.length,
+                          shrinkWrap: true,
+                          itemBuilder: (final context, final index) {
+                            return FilterItemWidget(
+                              index: index,
+                            );
+                          },
+                          separatorBuilder: (final context, final index) {
+                            return const AppHSpace(
+                              space: Dimens.padding,
+                            );
+                          },
+                        ),
+                      ),
+                      const AppVSpace(),
+                    ],
+                    ListView.separated(
+                      itemCount: state.status == Status.initial
+                          ? 10
+                          : state.barbersList!.results!.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (final context, final index) {
+                        return BarberItemWidget(
+                          index: index,
+                          showFakeData: state.status == Status.initial,
+                        );
+                      },
+                      separatorBuilder: (final context, final index) {
+                        return const AppVSpace();
+                      },
+                    ),
+                  ],
+                ),
+              )
           ],
         );
       },
@@ -67,10 +107,18 @@ class _BarbersWidgetState extends State<BarbersWidget> {
 }
 
 class BarberItemWidget extends StatelessWidget {
-  const BarberItemWidget({super.key});
+  const BarberItemWidget({
+    super.key,
+    required this.index,
+    required this.showFakeData,
+  });
+
+  final int index;
+  final bool showFakeData;
 
   @override
   Widget build(BuildContext context) {
+    final watch = context.watch<HomeBloc>();
     return Container(
       height: 106,
       padding: const EdgeInsets.all(Dimens.padding),
@@ -108,17 +156,17 @@ class BarberItemWidget extends StatelessWidget {
                 const AppVSpace(
                   space: Dimens.smallPadding,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'William Rojer Salon',
-                      style:
-                          AppTypography.dmSansTextTheme.titleMedium?.copyWith(
-                        color: AppColors.blackColor,
-                      ),
+                Expanded(
+                  child: Text(
+                    showFakeData
+                        ? 'William Rojer Salon'
+                        : watch.state.barbersList!.results![index].fullname ??
+                            '',
+                    style: AppTypography.dmSansTextTheme.titleMedium?.copyWith(
+                      color: AppColors.blackColor,
                     ),
-                  ],
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 const AppVSpace(
                   space: 6.0,
@@ -160,8 +208,39 @@ class BarberItemWidget extends StatelessWidget {
           const AppHSpace(
             space: Dimens.padding,
           ),
-          const RateWidget(rate: 4.0),
+          if (!showFakeData) const RateWidget(rate: 4.0),
         ],
+      ),
+    );
+  }
+}
+
+class FilterItemWidget extends StatelessWidget {
+  const FilterItemWidget({
+    super.key,
+    required this.index,
+  });
+
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    final watch = context.watch<HomeBloc>();
+
+    return OutlinedButton(
+      onPressed: () {},
+      style: ButtonStyle(
+        shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(Dimens.corners * 2),
+          ),
+        ),
+      ),
+      child: Text(
+        watch.state.servicesList!.results![index].title ?? '',
+        style: AppTypography.dmSansTextTheme.bodyLarge?.copyWith(
+          color: AppColors.whiteColor,
+        ),
       ),
     );
   }

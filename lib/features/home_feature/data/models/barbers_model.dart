@@ -54,7 +54,7 @@ class Result {
   String? address;
   double? lat;
   double? lon;
-  int? rate;
+  double? rate;
   double? distance;
   bool? isBookmarked;
   String? phoneNumber;
