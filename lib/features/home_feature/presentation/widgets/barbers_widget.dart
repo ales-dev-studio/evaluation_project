@@ -3,6 +3,7 @@ import 'package:evaluation_project/core/theme/colors.dart';
 import 'package:evaluation_project/core/theme/dimens.dart';
 import 'package:evaluation_project/core/theme/typography.dart';
 import 'package:evaluation_project/core/widgets/app_space.dart';
+import 'package:evaluation_project/core/widgets/rate_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'filter_button_widget.dart';
@@ -33,10 +34,10 @@ class BarbersWidget extends StatelessWidget {
           itemCount: 10,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (final context , final index){
+          itemBuilder: (final context, final index) {
             return const BarberItemWidget();
           },
-          separatorBuilder: (final context , final index){
+          separatorBuilder: (final context, final index) {
             return const AppVSpace();
           },
         )
@@ -44,7 +45,6 @@ class BarbersWidget extends StatelessWidget {
     );
   }
 }
-
 
 class BarberItemWidget extends StatelessWidget {
   const BarberItemWidget({super.key});
@@ -65,6 +65,7 @@ class BarberItemWidget extends StatelessWidget {
         ),
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
             width: 93.0,
@@ -93,7 +94,7 @@ class BarberItemWidget extends StatelessWidget {
                     Text(
                       'William Rojer Salon',
                       style:
-                      AppTypography.dmSansTextTheme.titleMedium?.copyWith(
+                          AppTypography.dmSansTextTheme.titleMedium?.copyWith(
                         color: AppColors.blackColor,
                       ),
                     ),
@@ -117,20 +118,16 @@ class BarberItemWidget extends StatelessWidget {
                   children: [
                     Text(
                       '5.0 Kms',
-                      style:
-                      AppTypography.dmSansTextTheme.titleSmall?.copyWith(
+                      style: AppTypography.dmSansTextTheme.titleSmall?.copyWith(
                         color: AppColors.secondaryColor,
                       ),
                     ),
                     Expanded(
                       child: Text(
-                        ' | Haircut ,Face Shave ,Skin Fades'
-                            'Fades'
-                            'Fades'
-                            'Fades',
+                        ' | Haircut ,Face Shave ,Skin Fades',
                         overflow: TextOverflow.ellipsis,
-                        style: AppTypography.dmSansTextTheme.titleSmall
-                            ?.copyWith(
+                        style:
+                            AppTypography.dmSansTextTheme.titleSmall?.copyWith(
                           color: AppColors.lightTextColor,
                         ),
                       ),
@@ -140,6 +137,10 @@ class BarberItemWidget extends StatelessWidget {
               ],
             ),
           ),
+          const AppHSpace(
+            space: Dimens.padding,
+          ),
+          const RateWidget(rate: 4.0),
         ],
       ),
     );
