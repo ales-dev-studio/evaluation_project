@@ -31,9 +31,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final DataState servicesDataState = await servicesUseCase(NoParams());
     final DataState barbersDataState = await barbersUseCase(NoParams());
 
-    print(servicesDataState);
-    print(barbersDataState);
-
     if (servicesDataState is DataFailed) {
       emit(
         state.copyWith(
