@@ -34,6 +34,8 @@ dependencies:
   # Code generator for assets, fonts, colors, …
   flutter_gen: ^5.4.0
 
+  #A package to use fonts from fonts.google.com
+  google_fonts: ^6.2.1
 
 # flutter_gen package configuration
 flutter_gen:
@@ -53,6 +55,5 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/fonts/
     - assets/icons/
     - assets/images/
