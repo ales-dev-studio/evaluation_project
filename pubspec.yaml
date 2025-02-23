@@ -1,0 +1,58 @@
+name: evaluation_project
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Web service handler
+  dio: ^5.8.0+1
+
+  # Comparing objects
+  equatable: ^2.0.5
+
+  # State management
+  bloc: ^8.1.2
+  flutter_bloc: ^8.1.3
+
+  # Dependency injection
+  get_it: ^7.6.0
+
+  # an easy way to add shimmer effect
+  skeletonizer: ^1.4.3
+
+  # SVG file viewer
+  flutter_svg: ^2.0.7
+
+  # Code generator for assets, fonts, colors, …
+  flutter_gen: ^5.4.0
+
+
+# flutter_gen package configuration
+flutter_gen:
+  output: lib/core/gen/
+  line_length: 80
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner:
+  flutter_gen_runner:
+
+  flutter_lints: ^4.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/fonts/
+    - assets/icons/
+    - assets/images/
